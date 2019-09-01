@@ -5,19 +5,22 @@
       <div class="row">
         <div class="entry-section col">
           <h2>Entry Section</h2>
-          <div>
-            <div v-if="errors.length">
-              <div id="error" class="alert alert-warning" role="alert" v-for="(error, index) in errors" :key="index">{{error}}</div>
+          <div class="row">
+            <div v-if="errors.length" class="col-12">
+              <div id="error" class="alert alert-danger" role="alert" v-for="(error, index) in errors" :key="index">{{error}}</div>
             </div>
-            <input id="binary" type="text" placeholder="Binary number" v-model="binNum">
-            <button @click="checkForm">Submit</button>
+            <div class="form-group col-8 offset-2">
+              <label for="binary">Binary Number</label>
+              <input id="binary" type="text" class="form-control" placeholder="Binary number" aria-describedby="binaryHelp" v-model="binNum">
+              <small id="binaryHelp" class="form-text text-muted">fill in only 0 and 1 digits.</small>
+              <button type="submit" class="btn btn-primary" @click="checkForm">Submit</button>
+            </div>
           </div>
         </div>
         <div class="display-section col">
           <h2>Result Section</h2>
-          <div>
-            <span v-for="(num, name, index) in listDisplay" :key="index">{{num*2}}^<sup>{{name}}</sup> + </span>
-            <span>=</span>
+          <div class="">
+            <span v-for="(num, index) in listDisplay" :key="index" class="number">{{num*2}}<sup>^{{index}}</sup><span v-if="index !== last"> + </span> </span>
           </div>
           <p><strong>Result: {{DeciNum}}</strong></p>
         </div>
@@ -54,6 +57,8 @@ export default {
       if(this.binNum.match(/^([0-1])+$/g) === null){
         this.errors.push('must be only 0 or 1');
       }
+
+      /* run method when no error occurs */
       if(this.errors.length == 0){
         this.binToDec();
       }
@@ -83,6 +88,11 @@ export default {
         }
       )
     }
+  },
+  computed: {
+    last(){
+      return Object.keys(this.listDisplay).length-1;
+    }
   }
 }
 </script>
@@ -95,5 +105,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.number {
+  font-size: 20px;
+  font-weight: bold;
+  color: brown;
+}
+
+.number sup {
+  font-weight: normal;
+  color: blue;
 }
 </style>
