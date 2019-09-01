@@ -2,7 +2,7 @@
 
 ## Binary to Decimal transmitter using VueJS.
 
-This is a beginner tier project practice base on the collection of [APP-IDEAS](https://github.com/florinpop17/app-ideas), thanks to florinpop17.
+>This is a beginner tier project practice base on the collection of [APP-IDEAS](https://github.com/florinpop17/app-ideas), thanks to florinpop17.
 
 **Tier:** 1-Beginner
 
